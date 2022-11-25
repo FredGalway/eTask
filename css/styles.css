@@ -1,0 +1,79 @@
+.nav-tabs {
+    border: 1px solid#ced4da;
+    padding: 1rem;
+    border-radius: 8px;
+    /* width: 65%; */
+    /* margin: 30px, auto, 2%, auto; */
+}
+
+.form {
+    border: 2px solid#ced4da;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.blue {
+    background-color: rgb(26 101 197 / 30%);
+}
+
+.green {
+    background-color: rgb(26 197 122 / 30%);
+}
+
+.yellow {
+    background-color: rgb(236 205 15 / 30%);
+}
+
+.red {
+    background-color: rgb(236 32 15 / 30%);
+}
+
+.cyan {
+    background-color: rgb(15 200 236 / 30%);
+}
+
+.bt-edit {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/edit_icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: right;
+    z-index: 100;
+    border: 1px solid rgba(254, 254, 254, 0);
+    right: 90px;
+    top: 37px;
+}
+
+.bt-close {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/delete_icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: right;
+    z-index: 100;
+    border: 1px solid rgba(254, 254, 254, 0);
+    right: 30px;
+    top: 37px;
+}
+
+.accordion {
+    /* --bs-accordion-color: #212529; */
+    --bs-accordion-color: #262727;
+    --bs-accordion-bg: #fff;
+    --bs-accordion-bg: none;
+}
+
+.accordion-item:last-of-type {
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border: none;
+}
