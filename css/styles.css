@@ -77,3 +77,9 @@
     border-bottom-left-radius: var(--bs-accordion-border-radius);
     border: none;
 }
+
+.accordion-item:first-of-type {
+    border-top-left-radius: var(--bs-accordion-border-radius);
+    border-top-right-radius: var(--bs-accordion-border-radius);
+    border: none;
+}

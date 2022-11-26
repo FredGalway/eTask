@@ -103,14 +103,23 @@
                             <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-10">
-                                            <h4>Tasks for "'.$row["list_title"].'"</h4>
+                                        ';
+                                        $sql_task = "SELECT * FROM tasks ";
+
+                                        //Retrieving the contents of the table
+                                        $result_task = mysqli_query($con, $sql_task);
+                                        echo'
+                                        <br>
+                                        <h4>'.mysqli_num_rows($result_task).' Task(s)</h4>
                                             ';
 
-                                            $sql_task = "SELECT * FROM tasks ";
+                                            // $sql_task = "SELECT * FROM tasks ";
 
-                                            //Retrieving the contents of the table
-                                            $result_task = mysqli_query($con, $sql_task);
+                                            // //Retrieving the contents of the table
+                                            // $result_task = mysqli_query($con, $sql_task);
                                             $noTasks = true;
+
+                                           
 
                                             while ($row2 = mysqli_fetch_assoc($result_task)) {
                                                 $noTasks = false;

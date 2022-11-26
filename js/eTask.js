@@ -73,15 +73,6 @@ editList.forEach(element => {
 });
 
 
-function refreshPage() {
-    setTimeout(() => {
-        console.log("refresh page");
-        window.location.reload();
-    }, "8000")
-}
-
-
-
 // Search Function ----------------------------------------------------------------------------------------------------------------------------------------------
 const search = document.getElementById("search");
 search.addEventListener("input", () => {
@@ -111,3 +102,14 @@ search.addEventListener("input", () => {
     });
 
 });
+
+
+
+
+// RefreshPage Function ----------------------------------------------------------------------------------------------------------------------------------------------
+function refreshPage() {
+    setTimeout(() => {
+        console.log("refresh page");
+        window.location.reload();
+    }, "8000")
+}

@@ -1,3 +1,11 @@
+<?php
+
+// Display errors
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+include_once "./db_connect.php";
+include_once "./index.php";
+?>
 <div class="tab-content container d-flex flex-column" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
 
@@ -45,24 +53,42 @@
                             <div class="mb-4">
                                 <p>Select your list :</p>
                                 <?php
-                                $sql_list_title = "SELECT list_title FROM lists";
+                              
+                                // Retrieving the contents of the table
+                                $sql_list_titles = "SELECT list_title FROM lists";
+                                $result_list_titles = mysqli_query($con, $sql_list_titles);
+                                $i = 1;
+                                // echo mysqli_num_rows($result_list_titles);
+                                // print_r($result_list_titles);
+
+ 
+                                // foreach ($result_list_titles as $row) {
+                                //     $content = $row["list_title"].'<br>';
+                                //     echo '
+                                //     <option value="'.$i++.'">'.$content.'</option>
+                                //     ';
+                                // }
 
                                 //Retrieving the contents of the table
-                                $result_list_title = mysqli_query($con, $sql_list_title);
-                                // echo mysqli_num_rows($result_list_title);
-
-                                foreach ($result_list_title as $row) {
-                                    $content = $row["list_title"].'<br>';
-                                }
+                                // $result_list_title = mysqli_query($con, $sql_list);
+                                // $network_lists = "SELECT list_title FROM lists WHERE 1";
+                                // echo $network_lists;
                                 
                                 ?>
                                 <select class="form-select list_group" id="list_group" aria-label="list_group" name="list_group">
+                               
                                     <option selected value="0">Choose your List</option>
-                                    <option value="1"><?php echo $content ?></option>
-                                    <option value="2"><?php echo $content ?></option>
-                                    <option value="3"><?php echo $content ?></option>
-                                    <option value="4"><?php echo $content ?></option>
-                                    <option value="5"><?php echo $content ?></option>
+                                    <?php
+                                    foreach ($result_list_titles as $row) {
+                                        $content = $row["list_title"].'<br>';
+                                        echo '
+                                        <option value="'.$i++.'">'.$content.'</option>
+                                        ';
+                                    }
+
+                                    ?>
+                                    
+                                   
                                 </select>
                             </div>
                             <div class="mb-4">
