@@ -16,8 +16,11 @@ const editListColor = document.getElementById("editListColor");
 
 
 // Search Variable
-const hiddenInput = document.getElementById("hidden");
-// console.log("hiddenInput : ", hiddenInput);
+const hiddenInput1 = document.getElementById("hidden1");
+const hiddenInput2 = document.getElementById("hidden2");
+
+// console.log("hiddenInput 1: ", hiddenInput1);
+// console.log("hiddenInput 2: ", hiddenInput2);
 
 // Update texts ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -35,12 +38,14 @@ editTask.forEach(element => {
         editTaskTitle.value = titleText1;
         editTaskDesc.value = descText;
 
-        console.log('titleText : ', titleText1);
-        console.log('descText : ', descText);
+        // console.log('titleText : ', titleText1);
+        // console.log('descText : ', descText);
 
-        hiddenInput.value = element.id;
+        hiddenInput1.value = element.id;
 
-        // console.log(hiddenInput);
+        // console.log(hiddenInput1.value);
+        // console.log(hiddenInput1);
+
     });
 });
 
@@ -56,15 +61,24 @@ editList.forEach(element => {
         editListTitle.value = titleText2;
         editListColor.value = colorText;
 
-        console.log('titleText : ', titleText2);
-        console.log('colorText : ', colorText);
+        // console.log('titleText : ', titleText2);
+        // console.log('colorText : ', colorText);
 
-        hiddenInput.value = element.id;
+        hiddenInput2.value = element.id;
 
-        // console.log(hiddenInput);
+        //     console.log(hiddenInput2.value);
+        //     console.log(hiddenInput2);
+
     });
 });
 
+
+function refreshPage() {
+    setTimeout(() => {
+        console.log("refresh page");
+        window.location.reload();
+    }, "8000")
+}
 
 
 

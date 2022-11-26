@@ -14,7 +14,7 @@ $id = $_GET['id'];
 echo $id;
 
 // No coma '' with sql functions
-$deleteQuery = "DELETE FROM tasks WHERE task_ID = $id";
+$deleteQuery = "DELETE FROM tasks WHERE task_ID = '$id'";
 $result_task=mysqli_query($con, $deleteQuery);
 header("location:./index.php");
 

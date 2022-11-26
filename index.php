@@ -24,6 +24,7 @@
     // Include once : the menu, the database connection and the update part
     require_once "./navBar.php";
     require_once "./db_connect.php";
+   
 
     if($updateList = 0){
         require_once "./update-list.php";
@@ -41,6 +42,7 @@
         
         // DB call Variable
         $result_task = mysqli_query($con, $sql_task);
+    
     } elseif (isset($_POST['submit_list'])) {
         $list_title = $_POST['list_title'];
         $list_color = $_POST['list_color'];
@@ -48,7 +50,7 @@
         
         // DB call Variable
         $result_list = mysqli_query($con, $sql_list);
-    } 
+    }  
     ?>
 
 

@@ -14,7 +14,7 @@ $id = $_GET['id'];
 echo $id;
 
 // No coma '' with sql functions
-$deleteQuery = "DELETE FROM lists WHERE list_ID = $id";
+$deleteQuery = "DELETE FROM lists WHERE list_ID = '$id'";
 $result_list=mysqli_query($con, $deleteQuery);
 header("location:./index.php");
 

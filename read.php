@@ -5,9 +5,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <h2>Your current Lists</h2>
 
                 <?php
+                     require_once "./error-handler.php";
+
                     $i = 0;
                     // echo $i++;                    
                     // echo '<br><br>';
@@ -15,24 +16,35 @@
                 ?>
 
 
-                <?php
-                $sql_list = "SELECT * FROM lists";
+                <?php 
                 $sql_list_title = "SELECT list_title FROM lists";
+                $sql_list = "SELECT * FROM lists";
 
                 //Retrieving the contents of the table
-                $result_list = mysqli_query($con, $sql_list);
-                $result_list_title = mysqli_query($con, $sql_list_title);
+                $result_list = mysqli_query($con, $sql_list) or die(mysqli_error($con));
+                
+                if (!$result_list) {
+                    echo "Impossible d'exécuter la requête ($sql_list) dans la base : ".$database;
+                    exit;
+                }
 
-                while ($listTable = mysqli_fetch_assoc($result_list_title)) {
-                    foreach ($result_list_title as $row) {
-                        $content = $row["list_title"].'<br>';
-                        echo $content;
-                    }
+                // Return the number of rows in result set
+
+                if (mysqli_num_rows($result_list) == 0) {
+                    echo "No List title found, Nothing to display.";
+                    exit;
+                } else {
+                    echo'
+                    <h2>Your '.mysqli_num_rows($result_list).' List(s)</h2>
+                    ';
+                    // echo "Result number : ".mysqli_num_rows($result_list)."<br>";
+                    
                 }
 
                 $noLists = true;
 
                 while ($row = mysqli_fetch_assoc($result_list)) {
+                    // print_r($row);
                     $noLists = false;
                     $listID = $row["list_ID"];
 
@@ -75,7 +87,6 @@
 
                     <?php
                     echo '
-
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading_'.($num++)-(0).'"> 
                             <button type="button" class="bt-edit editList" data-bs-toggle="modal" data-bs-target="#listModal" id="'.$row["list_ID"].'"></button>
@@ -116,7 +127,9 @@
                                                         </div>
                                                     </div>
                                                 ';
+                                               
                                                 include_once "./update-task.php";
+                                                
                                             } 
                                             // $noTasks : allows to alert the user when eNotes is empty
                                             // Here, the first $noTasks case is 'True'. No need to specify it again.
@@ -145,12 +158,13 @@
                         </div>
                     </div>
                     ';
-                    include_once "./update-list.php";
+                   require_once "./update-list.php";
                     echo '
                     </div>
                     ';
                    
-                }
+                } // End of the While Loop
+               
 
                 // $noLists : allows to alert the user when eNotes is empty
                 // Here, the first $noTasks case is 'True'. No need to specify it again.

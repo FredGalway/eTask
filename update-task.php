@@ -2,13 +2,23 @@
 
 include_once "./db_connect.php";
 
-if(isset($_POST["hidden"]) && isset($_POST["editTaskTitle"])){
+if(isset($_POST["hidden1"]) && isset($_POST["editTaskTitle"])){
   // if(isset($_POST["hidden"])){
-    $id = $_POST["hidden"];
+    $id = $_POST["hidden1"];
     $task_title = $_POST["editTaskTitle"];
     $task_desc = $_POST["editTaskDesc"];
     $sql_task = "UPDATE tasks SET task_ID='$id', task_title='$task_title', task_description='$task_desc' WHERE task_ID='$id'";
     $result_task = mysqli_query($con, $sql_task);
+
+    if (!$result_task) {
+      echo "<br><br>"."Impossible d'exécuter la requête ($sql_task) dans la base : ".$database."<br><br>";
+      exit;
+
+    } else {
+      // echo "id :".$id;
+      // echo "<br>"."List request : $sql_task"."<br>";
+    }
+
 } 
 
 echo '
@@ -24,7 +34,7 @@ echo '
 
       <!-- Form updated from create-read.php -->
         <form class="form" method="POST">
-            <input type="hidden" name="hidden" id="hidden">
+            <input type="hidden" name="hidden1" id="hidden1">
             <!-- with Bootsrap : mb4 = margin top -->
             <div class="mb-4">
                 <label for="exampleInputEmail1" class="form-label">Title</label>
