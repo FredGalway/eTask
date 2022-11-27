@@ -57,38 +57,21 @@ include_once "./index.php";
                                 // Retrieving the contents of the table
                                 $sql_list_titles = "SELECT list_title FROM lists";
                                 $result_list_titles = mysqli_query($con, $sql_list_titles);
-                                $i = 1;
+                                // $i = 1;
                                 // echo mysqli_num_rows($result_list_titles);
-                                // print_r($result_list_titles);
-
- 
-                                // foreach ($result_list_titles as $row) {
-                                //     $content = $row["list_title"].'<br>';
-                                //     echo '
-                                //     <option value="'.$i++.'">'.$content.'</option>
-                                //     ';
-                                // }
-
-                                //Retrieving the contents of the table
-                                // $result_list_title = mysqli_query($con, $sql_list);
-                                // $network_lists = "SELECT list_title FROM lists WHERE 1";
-                                // echo $network_lists;
                                 
                                 ?>
                                 <select class="form-select list_group" id="list_group" aria-label="list_group" name="list_group">
                                
                                     <option selected value="0">Choose your List</option>
                                     <?php
-                                    foreach ($result_list_titles as $row) {
-                                        $content = $row["list_title"].'<br>';
-                                        echo '
-                                        <option value="'.$i++.'">'.$content.'</option>
-                                        ';
-                                    }
-
-                                    ?>
-                                    
-                                   
+                                        foreach ($result_list_titles as $row) {
+                                            $content = $row["list_title"].'<br>';
+                                            echo '
+                                            <option value="'.$content.'">'.$content.'</option>
+                                            ';
+                                        }
+                                    ?>   
                                 </select>
                             </div>
                             <div class="mb-4">
@@ -102,6 +85,7 @@ include_once "./index.php";
 
                             <button type="submit" class="btn btn-primary" name="submit_task">Add Task</button>
                         </form>
+                       
                     </div>
                 </div>
             </div>

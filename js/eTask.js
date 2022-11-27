@@ -1,19 +1,12 @@
 // Task Variables
 const editTask = document.querySelectorAll(".editTask");
-// console.log("editTask : ", editTask);
 const editTaskTitle = document.getElementById("editTaskTitle");
-// console.log("editTaskTitle : ", editTaskTitle);
 const editTaskDesc = document.getElementById("editTaskDesc");
-// console.log("editTaskDesc : ", editTaskDesc);
 
 // List Variables
 const editList = document.querySelectorAll(".editList");
-// console.log("ediList : ", editList);
 const editListTitle = document.getElementById("editListTitle");
-// console.log("editListTitle : ", editListTitle);
 const editListColor = document.getElementById("editListColor");
-// console.log("editListColor : ", editListColor);
-
 
 // Search Variable
 const hiddenInput1 = document.getElementById("hidden1");
@@ -38,14 +31,7 @@ editTask.forEach(element => {
         editTaskTitle.value = titleText1;
         editTaskDesc.value = descText;
 
-        // console.log('titleText : ', titleText1);
-        // console.log('descText : ', descText);
-
         hiddenInput1.value = element.id;
-
-        // console.log(hiddenInput1.value);
-        // console.log(hiddenInput1);
-
     });
 });
 
@@ -65,10 +51,6 @@ editList.forEach(element => {
         // console.log('colorText : ', colorText);
 
         hiddenInput2.value = element.id;
-
-        //     console.log(hiddenInput2.value);
-        //     console.log(hiddenInput2);
-
     });
 });
 
@@ -78,7 +60,6 @@ const search = document.getElementById("search");
 search.addEventListener("input", () => {
     const value = search.value.toLowerCase();
     editTask.forEach(element => {
-        // console.log(element.children);
         const titleText = element.parentElement.parentElement.firstElementChild.innerText.toLowerCase();
         const descText = element.parentElement.firstElementChild.innerText.toLowerCase();
 
@@ -102,8 +83,6 @@ search.addEventListener("input", () => {
     });
 
 });
-
-
 
 
 // RefreshPage Function ----------------------------------------------------------------------------------------------------------------------------------------------

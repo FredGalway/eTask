@@ -17,11 +17,12 @@
 
 
                 <?php 
-                $sql_list_title = "SELECT list_title FROM lists";
+                
                 $sql_list = "SELECT * FROM lists";
 
                 //Retrieving the contents of the table
                 $result_list = mysqli_query($con, $sql_list) or die(mysqli_error($con));
+                
                 
                 if (!$result_list) {
                     echo "Impossible d'exécuter la requête ($sql_list) dans la base : ".$database;
@@ -86,6 +87,23 @@
                     <style>.accordion-button {background-color:none;}</style>
 
                     <?php
+
+                    // if (isset($_POST['submit_task'])) {
+                        
+                    //     $select_list_title = $_POST['list_group'];
+                    //     $selectedTitle =(string)$select_list_title;
+                    //     $listTitle =(string)$row["list_title"];
+
+                    //     // echo $selectedTitle[0];
+                    //     // echo $listTitle[0];
+                    // }
+
+                    // if($selectedTitle[0] == $listTitle[0] && $selectedTitle[2] == $listTitle[2]){
+                    //     echo '<br>'.'ça match!';
+                    // }   else {
+                    //     echo '<br>'."Pas d'égalité entre $selectedTitle et $listTitle";
+                    // }
+
                     echo '
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading_'.($num++)-(0).'"> 
@@ -105,39 +123,49 @@
                                         <div class="col-lg-10">
                                         ';
                                         $sql_task = "SELECT * FROM tasks ";
-
+                                       
                                         //Retrieving the contents of the table
                                         $result_task = mysqli_query($con, $sql_task);
-                                        echo'
-                                        <br>
-                                        <h4>'.mysqli_num_rows($result_task).' Task(s)</h4>
-                                            ';
+                                        
+                                        echo'<br><h4>'.mysqli_num_rows($result_task).' Task(s)</h4>';
 
-                                            // $sql_task = "SELECT * FROM tasks ";
-
-                                            // //Retrieving the contents of the table
-                                            // $result_task = mysqli_query($con, $sql_task);
-                                            $noTasks = true;
+                                        // //Retrieving the contents of the table
+                                        $noTasks = true;
 
                                            
 
-                                            while ($row2 = mysqli_fetch_assoc($result_task)) {
-                                                $noTasks = false;
-
-                                                // Create a dynamic Task card  ----------------------------- 
-                                                echo '
-                                                    <div class="card my-3">
-                                                        <div class="card-header">'.$row2["task_title"].'</div>
-                                                        <div class="card-body">
-                                                        <p class="card-text">'.$row2["task_description"].'</p>
-                                                        <button type="button" class="btn btn-primary editTask" 
-                                                        data-bs-toggle="modal" data-bs-target="#taskModal" id="'.$row2["task_ID"].'">Edit</button>               
-                                                        <a href="./delete-task.php?id='.$row2["task_ID"].'" class="btn btn-danger">Delete</a>
+                                        while ($row2 = mysqli_fetch_assoc($result_task)) {
+                                            $noTasks = false;
+                                            
+                                            // Match test between characters of the list titles
+                                            if (isset($_POST['submit_task'])) {
+                        
+                                                $select_list_title = $_POST['list_group'];
+                                                $selectedTitle =(string)$select_list_title;
+                                                $listTitle =(string)$row["list_title"];
+                        
+                                                if($selectedTitle[0] == $listTitle[0] && $selectedTitle[2] == $listTitle[2]){
+                                                    
+                                                    // Create a dynamic Task card  ----------------------------- 
+                                                    echo '
+                                                        <div class="card my-3">
+                                                            <div class="card-header">'.$row2["task_title"].'</div>
+                                                            <div class="card-body">
+                                                            <p class="card-text">'.$row2["task_description"].'</p>
+                                                            <button type="button" class="btn btn-primary editTask" 
+                                                            data-bs-toggle="modal" data-bs-target="#taskModal" id="'.$row2["task_ID"].'">Edit</button>               
+                                                            <a href="./delete-task.php?id='.$row2["task_ID"].'" class="btn btn-danger">Delete</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                ';
+                                                    ';
+                                                }   else {
+                                                    echo' ';
+                                                }
+                                            }
                                                
-                                                include_once "./update-task.php";
+                                            
+                
+                                            include_once "./update-task.php";
                                                 
                                             } 
                                             // $noTasks : allows to alert the user when eNotes is empty
@@ -154,7 +182,6 @@
                                             }
                                             
                                             echo '
-
                                         </div>
                                     </div>
                                 </div>

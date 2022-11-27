@@ -36,6 +36,15 @@
 
     <?php
     if (isset($_POST['submit_task'])) {
+
+        $select_list_title = $_POST['list_group'];
+        if(!empty($select_list_title)){
+            $selected = $_POST['list_group'];  
+            echo 'You have chosen: ' . $selected;  
+        } else {  
+            echo 'Please select your list';  
+        }  
+
         $task_title = $_POST['task_title'];
         $task_desc = $_POST['task_description'];
         $sql_task = "INSERT INTO tasks (task_title, task_description) VALUES ('$task_title', '$task_desc')";
